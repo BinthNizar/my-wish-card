@@ -21,12 +21,12 @@
             justify-content: center;
             align-items: center;
             background: #f0f0f0;
-            padding-top: 20px; /* Added padding to move content down */
+            padding-top: 20px;
         }
 
         .instruction {
             text-align: center;
-            font-size: 1.2em; /* Reduced font size */
+            font-size: 1.2em;
             font-weight: bold;
             font-style: italic;
             color: #ff4500;
@@ -36,100 +36,99 @@
 
         .card {
             position: relative;
-            width: 300px;  /* Card width */
-            height: 425px;  /* Card height */
+            width: 300px;
+            height: 425px;
             border: 10px solid #ff4500;
-            margin: 30px auto 0 auto; /* Adjusted margin */
+            margin: 30px auto 0 auto;
             box-shadow: inset 10px 0px 15px 0px rgba(0, 0, 0, 0.1);
             background-image: linear-gradient(to bottom, rgba(255, 255, 255), rgba(255, 255, 255, 0.5)), url("shadow.png");
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
             background-color: #ffefd5;
+            transform-style: preserve-3d;
+            perspective: 1000px;
         }
 
         .card .text-container {
             width: 80%;
             height: 80%;
             margin: auto;
+            position: relative;
+            z-index: 2;
         }
 
         .card .text-container #head {
-            font-family: 'Nobile', sans-serif ;
+            font-family: 'Nobile', sans-serif;
             font-size: 1.5em;
-	    font-style: italic;
-            margin: 40px auto 10px auto; /* Adjusted margin */
-            text-align: left; /* Align left */
+            font-style: italic;
+            margin: 40px auto 10px auto;
+            text-align: left;
         }
 
         .card h5 {
             font-family: 'Nobile', sans-serif;
-            font-size: 1em; /* Adjusted font size */
+            font-size: 1em;
             font-style: italic;
             text-align: left;
-            margin: 35px 0 10px 0; /* Adjusted margins */
+            margin: 35px 0 10px 0;
         }
 
         .card p {
-            font-size: 0.9em; /* Reduced font size */
+            font-size: 0.9em;
             line-height: 1.4;
             font-family: 'Nobile', sans-serif;
             color: #331717;
-            text-align: justify; /* Justified text */
+            text-align: justify;
             margin: 20px 0;
         }
 
-        .card .front {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            margin: -10px 0px 0px -10px;
-            border: 10px solid #ff4500;
-            backface-visibility: hidden;
-            background-color: #ff4500;
-            background-size: contain;
-            transform-style: preserve-3d;
-            transform-origin: 0% 50%;
-            transform: perspective(800px) rotateY(0deg);
-            transition: all 0.8s ease-in-out;
-        }
-
-        .card:hover .front {
-            transform: perspective(800px) rotateY(-170deg);
-            background-color: #ffa07a;
-        }
-
-        .card:hover .back {
-            transform: perspective(800px) rotateY(-170deg);
-            box-shadow: 7px 0px 5px 0px rgba(0, 0, 0, 0.3), inset 2px 0px 15px 0px rgba(0, 0, 0, 0.1);
-            background-color: #ffe4e1;
-        }
-
+        .card .front,
         .card .back {
             position: absolute;
             width: 100%;
             height: 100%;
             border: 10px solid #ff4500;
-            margin: -10px 0px 0px -10px;
-            backface-visibility: visible;
-            filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, .5));
+            backface-visibility: hidden;
             transform-style: preserve-3d;
             transform-origin: 0% 50%;
-            transform: perspective(800px) rotateY(0deg);
-            transition: all 0.8s ease-in-out;
+            transition: transform 0.8s ease-in-out;
+        }
+
+        .card .front {
+            background-color: #ff4500;
+            z-index: 2;
+        }
+
+        .card .back {
             background-color: #ffefd5;
-            box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.1);
+            transform: rotateY(180deg);
+            z-index: 1;
+        }
+
+        .card:hover .front {
+            transform: rotateY(-180deg);
+        }
+
+        .card:hover .back {
+            transform: rotateY(0deg);
+            box-shadow: 7px 0px 5px 0px rgba(0, 0, 0, 0.3), inset 2px 0px 15px 0px rgba(0, 0, 0, 0.1);
+            background-color: #ffe4e1;
         }
 
         .imgset {
-            position: relative;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             z-index: 1;
-            margin-bottom: -215px;
         }
 
         .imgset img {
-            width: 300px;  /* Image width to match card */
-            height: 425px;  /* Image height to match card */
+            width: 280px;
+            height: 405px;
             box-shadow: 0px 6px 11px 7px rgba(0, 0, 0, 0.22);
             border-radius: 5px;
         }
@@ -138,17 +137,18 @@
 <body>
     <div class="instruction">Touch the card to see your festive greeting!</div>
     <div class="card">
-        <div class="back"></div>
         <div class="front">
             <div class="imgset">
                 <img src="eidWish.png" alt="Festival Image">
             </div>
         </div>
-        <div class="text-container">
-            <p id="head">Eid Al-Adha Mubarak!</p>
-            <h5>Dear Sir!</h5>
-            <p>You are a beacon of guidance in the lives of many students ✨, and I am deeply grateful for the knowledge and wisdom you generously impart... May Allah bless you with abundant health and happiness😊❣️. I pray that Allah showers you with countless blessings not only in this life but also in the hereafter,Aameen 🤲🏻</p>
-            <p><strong>My warmest Eid Al-Adha wishes to you and your family...🤝😍.</strong></p>
+        <div class="back">
+            <div class="text-container">
+                <p id="head">Eid Al-Adha Mubarak!</p>
+                <h5>Dear Sir!</h5>
+                <p>You are a beacon of guidance in the lives of many students ✨, and I am deeply grateful for the knowledge and wisdom you generously impart... May Allah bless you with abundant health and happiness😊❣️. I pray that Allah showers you with countless blessings not only in this life but also in the hereafter, Aameen 🤲🏻</p>
+                <p><strong>My warmest Eid Al-Adha wishes to you and your family...🤝😍.</strong></p>
+            </div>
         </div>
     </div>
 </body>
